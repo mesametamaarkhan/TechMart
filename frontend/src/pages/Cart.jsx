@@ -14,8 +14,8 @@ const CartPage = () => {
 
     useEffect(() => {
         const checkAuthentication = () => {
-            const currentUser = localStorage.getItem('user');
-            const token = localStorage.getItem('accessToken');
+            const currentUser = sessionStorage.getItem('user');
+            const token = sessionStorage.getItem('accessToken');
 
             if (!currentUser || !token) {
                 navigate('/login'); // Redirect to login page if not logged in
@@ -23,8 +23,8 @@ const CartPage = () => {
         };
 
         const fetchCart = async () => {
-            const token = localStorage.getItem('accessToken');
-            const user = JSON.parse(localStorage.getItem('user'));
+            const token = sessionStorage.getItem('accessToken');
+            const user = JSON.parse(sessionStorage.getItem('user'));
 
             try {
                 const res = await axios.get(`${API_BASE_URL}/cart/${user.id}`, 
@@ -53,8 +53,8 @@ const CartPage = () => {
 
     const handleDeleteFromCart = async (productId) => {
         try {
-            const token = localStorage.getItem('accessToken');
-            const user = JSON.parse(localStorage.getItem('user'));
+            const token = sessionStorage.getItem('accessToken');
+            const user = JSON.parse(sessionStorage.getItem('user'));
 
             const res = await axios.put(`${API_BASE_URL}/cart/delete-item/${productId}`, 
                 {
@@ -82,8 +82,8 @@ const CartPage = () => {
 
     const updateQuantity = async (productId, add) => {
         try {
-            const token = localStorage.getItem('accessToken');
-            const user = JSON.parse(localStorage.getItem('user'));
+            const token = sessionStorage.getItem('accessToken');
+            const user = JSON.parse(sessionStorage.getItem('user'));
 
             const res = await axios.put(`${API_BASE_URL}/cart/update-quantity/${productId}`, 
                 {

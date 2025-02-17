@@ -16,9 +16,9 @@ const LoginPage = () => {
   });
 
   useEffect(() => {
-    localStorage.removeItem('accessToken');
-    localStorage.removeItem('refreshToken');
-    localStorage.removeItem('user');
+    sessionStorage.removeItem('accessToken');
+    sessionStorage.removeItem('refreshToken');
+    sessionStorage.removeItem('user');
   }, []);
 
   const handleSubmit = async (e) => {
@@ -31,9 +31,9 @@ const LoginPage = () => {
       });
 
       if (response.status === 200) {
-        localStorage.setItem('accessToken', response.data.accessToken);
-        localStorage.setItem('refreshToken', response.data.refreshToken);
-        localStorage.setItem('user', JSON.stringify(response.data.user));
+        sessionStorage.setItem('accessToken', response.data.accessToken);
+        sessionStorage.setItem('refreshToken', response.data.refreshToken);
+        sessionStorage.setItem('user', JSON.stringify(response.data.user));
         navigate('/');
       } 
       else if (response.status === 400) {

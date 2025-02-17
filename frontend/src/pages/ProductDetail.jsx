@@ -32,8 +32,8 @@ const ProductDetail = () => {
 
     const handleAddToCart = async () => {
         try {
-            const token = localStorage.getItem('accessToken');
-            const user = JSON.parse(localStorage.getItem('user'));
+            const token = sessionStorage.getItem('accessToken');
+            const user = JSON.parse(sessionStorage.getItem('user'));
             
             if(!token || !user) {
                 alert('You need to login first');

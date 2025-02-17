@@ -7,15 +7,15 @@ const Navbar = () => {
   const navigate = useNavigate();
 
   const handleNavigate = (path) => {
-    const currentUser = JSON.parse(localStorage.getItem('user'));
-    const token = localStorage.getItem('accessToken');
+    const currentUser = JSON.parse(sessionStorage.getItem('user'));
+    const token = sessionStorage.getItem('accessToken');
 
     if (!currentUser || !token) {
       navigate('/login');
     }
     else {
       if(path === '/profile/') {
-        path += `${JSON.parse(localStorage.getItem('user')).id}`;
+        path += `${JSON.parse(sessionStorage.getItem('user')).id}`;
       }
       navigate(path);
     }

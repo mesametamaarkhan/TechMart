@@ -13,8 +13,8 @@ const Profile = () => {
 
     useEffect(() => {
         const checkAuthentication = () => {
-            const currentUser = JSON.parse(localStorage.getItem('user'));
-            const token = localStorage.getItem('accessToken');
+            const currentUser = JSON.parse(sessionStorage.getItem('user'));
+            const token = sessionStorage.getItem('accessToken');
 
             if (!currentUser || !token) {
                 navigate('/login'); // Redirect to login page if not logged in
@@ -22,8 +22,8 @@ const Profile = () => {
         };
 
         const fetchUserDetails = async () => {
-            const currentUser = JSON.parse(localStorage.getItem('user'));
-            const token = localStorage.getItem('accessToken');
+            const currentUser = JSON.parse(sessionStorage.getItem('user'));
+            const token = sessionStorage.getItem('accessToken');
 
             try {
                 const response = await axios.get(`${API_BASE_URL}/user/profile-page/${currentUser.id}`, 
@@ -45,8 +45,8 @@ const Profile = () => {
         };
 
         const fetchOrderHistory = async () => {
-            const currentUser = JSON.parse(localStorage.getItem('user'));
-            const token = localStorage.getItem('accessToken');
+            const currentUser = JSON.parse(sessionStorage.getItem('user'));
+            const token = sessionStorage.getItem('accessToken');
 
             try {
                 const response = await axios.get(`${API_BASE_URL}/orders/${currentUser.id}`, 
@@ -79,7 +79,7 @@ const Profile = () => {
     const handleUpdateProfile = async (e) => {
         e.preventDefault();
         try {
-            const token = localStorage.getItem('accessToken');
+            const token = sessionStorage.getItem('accessToken');
             const res = await axios.put(`${API_BASE_URL}/user/update-profile/${userDetails._id}`, userDetails,
                 {
                     headers: {
@@ -119,8 +119,8 @@ const Profile = () => {
         }
     
         try {
-            const token = localStorage.getItem("accessToken");
-            const currentUser = JSON.parse(localStorage.getItem("user"));
+            const token = sessionStorage.getItem("accessToken");
+            const currentUser = JSON.parse(sessionStorage.getItem("user"));
     
             const response = await axios.post(
                 `${API_BASE_URL}/user/reset-password/${currentUser.id}`,

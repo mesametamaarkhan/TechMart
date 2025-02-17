@@ -47,8 +47,8 @@ const CheckoutModal = ({ isOpen, onClose, total, tax }) => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const token = localStorage.getItem('accessToken');
-    const user = JSON.parse(localStorage.getItem('user'));
+    const token = sessionStorage.getItem('accessToken');
+    const user = JSON.parse(sessionStorage.getItem('user'));
 
     try {
       formData.userId = user.id;
